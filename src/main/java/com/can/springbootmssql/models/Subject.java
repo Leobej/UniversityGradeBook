@@ -1,5 +1,7 @@
 package com.can.springbootmssql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -95,7 +97,7 @@ public class Subject {
         result = 31 * result + (shortSubjectName != null ? shortSubjectName.hashCode() : 0);
         return result;
     }
-
+    @JsonIgnore
     public Collection<Grade> getGradesBySubjectId() {
         return gradesBySubjectId;
     }
@@ -104,19 +106,19 @@ public class Subject {
         this.gradesBySubjectId = gradesBySubjectId;
     }
 
-    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
-        return professorSubjectsBySubjectId;
-    }
+//    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
+//        return professorSubjectsBySubjectId;
+//    }
+//
+//    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
+//        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
+//    }
 
-    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
-        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
-    }
-
-    public SubjectType getSubjectTypeBySubjectTypeId() {
-        return subjectTypeBySubjectTypeId;
-    }
-
-    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
-        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
-    }
+//    public SubjectType getSubjectTypeBySubjectTypeId() {
+//        return subjectTypeBySubjectTypeId;
+//    }
+//
+//    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
+//        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
+//    }
 }

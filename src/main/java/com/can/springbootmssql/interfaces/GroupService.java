@@ -1,4 +1,4 @@
-package com.can.springbootmssql.services;
+package com.can.springbootmssql.interfaces;
 
 
 

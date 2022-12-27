@@ -1,5 +1,7 @@
 package com.can.springbootmssql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -15,24 +17,30 @@ public class Grade {
     @Basic
     @Column(name = "ExamDate", nullable = true)
     private Date examDate;
+
     @Basic
     @Column(insertable = false,updatable = false,name = "ProfessorId", nullable = false)
     private int professorId;
+
     @Basic
     @Column(insertable = false,updatable = false,name = "SubjectId", nullable = false)
     private int subjectId;
+
     @Basic
     @Column(insertable = false,updatable = false,name = "StudentId", nullable = false)
     private int studentId;
     @Basic
     @Column(name = "Active", nullable = false)
     private boolean active;
+
     @ManyToOne
     @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId", nullable = false)
     private Professor professorByProfessorId;
+
     @ManyToOne
     @JoinColumn(name = "SubjectId", referencedColumnName = "SubjectId", nullable = false)
     private Subject subjectBySubjectId;
+
     @ManyToOne
     @JoinColumn(name = "StudentId", referencedColumnName = "StudentId", nullable = false)
     private Student studentByStudentId;
@@ -123,14 +131,14 @@ public class Grade {
         return result;
     }
 
-    public Professor getProfessorByProfessorId() {
-        return professorByProfessorId;
-    }
+//    public Professor getProfessorByProfessorId() {
+//        return professorByProfessorId;
+//    }
 
     public void setProfessorByProfessorId(Professor professorByProfessorId) {
         this.professorByProfessorId = professorByProfessorId;
     }
-
+    @JsonIgnore
     public Subject getSubjectBySubjectId() {
         return subjectBySubjectId;
     }
@@ -138,7 +146,7 @@ public class Grade {
     public void setSubjectBySubjectId(Subject subjectBySubjectId) {
         this.subjectBySubjectId = subjectBySubjectId;
     }
-
+    @JsonIgnore
     public Student getStudentByStudentId() {
         return studentByStudentId;
     }

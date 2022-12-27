@@ -1,5 +1,7 @@
 package com.can.springbootmssql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -118,7 +120,7 @@ public class Student {
         result = 31 * result + groupId;
         return result;
     }
-
+    @JsonIgnore
     public Collection<Grade> getGradesByStudentId() {
         return gradesByStudentId;
     }
@@ -126,7 +128,7 @@ public class Student {
     public void setGradesByStudentId(Collection<Grade> gradesByStudentId) {
         this.gradesByStudentId = gradesByStudentId;
     }
-
+@JsonIgnore
     public Group getGroupByGroupId() {
         return groupByGroupId;
     }

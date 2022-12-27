@@ -2,6 +2,7 @@ package com.can.springbootmssql.services;
 
 
 
+import com.can.springbootmssql.interfaces.GroupService;
 import com.can.springbootmssql.models.Group;
 import com.can.springbootmssql.repositories.GroupRepository;
 import lombok.RequiredArgsConstructor;

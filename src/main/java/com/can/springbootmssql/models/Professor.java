@@ -1,5 +1,7 @@
 package com.can.springbootmssql.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
@@ -27,8 +29,8 @@ public class Professor {
     private String cnp;
     @OneToMany(mappedBy = "professorByProfessorId")
     private Collection<Grade> gradesByProfessorId;
-    @OneToMany(mappedBy = "professorByProfessorId")
-    private Collection<ProfessorSubject> professorSubjectsByProfessorId;
+//    @OneToMany(mappedBy = "professorByProfessorId")
+//    private Collection<ProfessorSubject> professorSubjectsByProfessorId;
 
     public int getProfessorId() {
         return professorId;
@@ -106,7 +108,7 @@ public class Professor {
         result = 31 * result + (cnp != null ? cnp.hashCode() : 0);
         return result;
     }
-
+    @JsonIgnore
     public Collection<Grade> getGradesByProfessorId() {
         return gradesByProfessorId;
     }
@@ -115,11 +117,11 @@ public class Professor {
         this.gradesByProfessorId = gradesByProfessorId;
     }
 
-    public Collection<ProfessorSubject> getProfessorSubjectsByProfessorId() {
-        return professorSubjectsByProfessorId;
-    }
-
-    public void setProfessorSubjectsByProfessorId(Collection<ProfessorSubject> professorSubjectsByProfessorId) {
-        this.professorSubjectsByProfessorId = professorSubjectsByProfessorId;
-    }
+//    public Collection<ProfessorSubject> getProfessorSubjectsByProfessorId() {
+//        return professorSubjectsByProfessorId;
+//    }
+//
+//    public void setProfessorSubjectsByProfessorId(Collection<ProfessorSubject> professorSubjectsByProfessorId) {
+//        this.professorSubjectsByProfessorId = professorSubjectsByProfessorId;
+//    }
 }

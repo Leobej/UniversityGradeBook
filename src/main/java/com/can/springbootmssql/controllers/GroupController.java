@@ -4,7 +4,7 @@ package com.can.springbootmssql.controllers;
 
 
 import com.can.springbootmssql.models.Group;
-import com.can.springbootmssql.services.GroupService;
+import com.can.springbootmssql.interfaces.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
