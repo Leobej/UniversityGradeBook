@@ -21,7 +21,7 @@ public class SubjectController {
     private final SubjectService subjectService;
 
     @GetMapping("")
-    public List<Subject> getAllGroupTypes() {
+    public List<Subject> getAllSubjects() {
         return subjectService.getAllSubjects();
     }
 }

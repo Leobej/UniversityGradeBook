@@ -19,7 +19,7 @@ public class SubjectTypeController {
     private final SubjectTypeService subjectTypeService;
 
     @GetMapping("")
-    public List<SubjectType> getAllGroupTypes() {
+    public List<SubjectType> getAllSubjectTypes() {
         return subjectTypeService.getAllSubjectTypes();
     }
 }

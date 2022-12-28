@@ -7,6 +7,7 @@ import com.can.springbootmssql.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,5 +18,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
+    }
+
+    @Transactional
+    @Override
+    public List<Student> getAllActiveStudents() {
+        return studentRepository.getAllActiveStudents();
     }
 }

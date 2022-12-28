@@ -19,7 +19,12 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("")
-    public List<Student> getAllGroupTypes() {
+    public List<Student> getAllStudents() {
         return studentService.getAllStudents();
+    }
+
+    @GetMapping("/active")
+    public List<Student> getAllActiveStudents() {
+        return studentService.getAllActiveStudents();
     }
 }

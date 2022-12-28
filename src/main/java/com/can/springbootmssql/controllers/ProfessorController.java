@@ -18,7 +18,7 @@ public class ProfessorController {
     private final ProfessorService professorService;
 
     @GetMapping("")
-    public List<Professor> getAllGroupTypes() {
+    public List<Professor> getAllProfessors() {
         return professorService.getAllProfessors();
     }
 }
