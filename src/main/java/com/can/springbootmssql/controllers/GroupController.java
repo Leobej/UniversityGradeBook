@@ -3,6 +3,7 @@ package com.can.springbootmssql.controllers;
 
 
 
+import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.models.Group;
 import com.can.springbootmssql.interfaces.GroupService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class GroupController {
     private final GroupService groupService;
 
     @GetMapping("")
-    public List<Group> getAllGroups() {
+    public List<GroupDTO> getAllGroups() {
         return groupService.getAllGroups();
     }
 

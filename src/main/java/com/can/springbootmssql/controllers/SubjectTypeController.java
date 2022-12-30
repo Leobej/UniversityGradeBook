@@ -1,5 +1,6 @@
 package com.can.springbootmssql.controllers;
 
+import com.can.springbootmssql.dtos.SubjectTypeDTO;
 import com.can.springbootmssql.interfaces.SubjectService;
 import com.can.springbootmssql.interfaces.SubjectTypeService;
 import com.can.springbootmssql.models.Subject;
@@ -19,7 +20,7 @@ public class SubjectTypeController {
     private final SubjectTypeService subjectTypeService;
 
     @GetMapping("")
-    public List<SubjectType> getAllSubjectTypes() {
+    public List<SubjectTypeDTO> getAllSubjectTypes() {
         return subjectTypeService.getAllSubjectTypes();
     }
 }

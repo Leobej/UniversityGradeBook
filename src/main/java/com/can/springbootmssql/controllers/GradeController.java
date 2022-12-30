@@ -1,6 +1,7 @@
 package com.can.springbootmssql.controllers;
 
 
+import com.can.springbootmssql.dtos.GradeDTO;
 import com.can.springbootmssql.models.Grade;
 import com.can.springbootmssql.interfaces.GradeService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class GradeController {
     private final GradeService gradeService;
 
     @GetMapping("")
-    public List<Grade> getAllGrades() {
+    public List<GradeDTO> getAllGrades() {
         return gradeService.getAllGrades();
     }
 

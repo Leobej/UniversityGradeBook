@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.modelmapper.ModelMapper;
 
-@ComponentScan
+@Component
 public class Mapper {
     private final ModelMapper modelMapper;
     private final Logger logger = LoggerFactory.getLogger(ModelMapper.class);

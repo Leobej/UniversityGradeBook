@@ -1,5 +1,6 @@
 package com.can.springbootmssql.controllers;
 
+import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.models.GroupType;
 import com.can.springbootmssql.interfaces.GroupTypeService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class GroupTypeController {
     private final GroupTypeService groupTypeService;
 
     @GetMapping("")
-    public List<GroupType> getAllGroupTypes() {
+    public List<GroupTypeDTO> getAllGroupTypes() {
         return groupTypeService.getAllGroupTypes();
     }
 }

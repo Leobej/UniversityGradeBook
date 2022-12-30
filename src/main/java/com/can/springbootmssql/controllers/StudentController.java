@@ -1,5 +1,6 @@
 package com.can.springbootmssql.controllers;
 
+import com.can.springbootmssql.dtos.StudentDTO;
 import com.can.springbootmssql.interfaces.ProfessorService;
 import com.can.springbootmssql.interfaces.StudentService;
 import com.can.springbootmssql.models.Professor;
@@ -19,12 +20,12 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("")
-    public List<Student> getAllStudents() {
+    public List<StudentDTO> getAllStudents() {
         return studentService.getAllStudents();
     }
 
     @GetMapping("/active")
-    public List<Student> getAllActiveStudents() {
+    public List<StudentDTO> getAllActiveStudents() {
         return studentService.getAllActiveStudents();
     }
 }

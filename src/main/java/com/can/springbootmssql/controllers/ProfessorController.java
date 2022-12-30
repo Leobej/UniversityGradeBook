@@ -1,5 +1,6 @@
 package com.can.springbootmssql.controllers;
 
+import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.interfaces.GroupTypeService;
 import com.can.springbootmssql.interfaces.ProfessorService;
 import com.can.springbootmssql.models.GroupType;
@@ -18,7 +19,7 @@ public class ProfessorController {
     private final ProfessorService professorService;
 
     @GetMapping("")
-    public List<Professor> getAllProfessors() {
+    public List<ProfessorDTO> getAllProfessors() {
         return professorService.getAllProfessors();
     }
 }
