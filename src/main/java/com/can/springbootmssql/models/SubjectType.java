@@ -1,7 +1,5 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -52,7 +50,7 @@ public class SubjectType {
         result = 31 * result + (active != null ? active.hashCode() : 0);
         return result;
     }
-@JsonIgnore
+
     public Collection<Subject> getSubjectsBySubjectTypeId() {
         return subjectsBySubjectTypeId;
     }

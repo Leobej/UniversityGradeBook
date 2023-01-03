@@ -1,18 +1,14 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name="GROUPTABLE")
-public class Group {
+public class GroupTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "GroupId", nullable = false)
     private int groupId;
-
     @Basic
     @Column(name = "GroupTypeId", nullable = false)
     private int groupTypeId;
@@ -22,12 +18,10 @@ public class Group {
     @Basic
     @Column(name = "Active", nullable = false)
     private boolean active;
-    @JsonIgnore
     @ManyToOne
-    @JoinColumn(insertable = false,updatable = false,name = "GroupTypeId", referencedColumnName = "GroupTypeId", nullable = false)
+    @JoinColumn(name = "GroupTypeId", referencedColumnName = "GroupTypeId", nullable = false,insertable = false,updatable = false)
     private GroupType groupTypeByGroupTypeId;
-    @JsonIgnore
-    @OneToMany(mappedBy = "groupByGroupId")
+    @OneToMany(mappedBy = "groupTableByGroupId")
     private Collection<Student> studentsByGroupId;
 
     public int getGroupId() {
@@ -67,12 +61,12 @@ public class Group {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Group group = (Group) o;
+        GroupTable that = (GroupTable) o;
 
-        if (groupId != group.groupId) return false;
-        if (groupTypeId != group.groupTypeId) return false;
-        if (active != group.active) return false;
-        if (fullname != null ? !fullname.equals(group.fullname) : group.fullname != null) return false;
+        if (groupId != that.groupId) return false;
+        if (groupTypeId != that.groupTypeId) return false;
+        if (active != that.active) return false;
+        if (fullname != null ? !fullname.equals(that.fullname) : that.fullname != null) return false;
 
         return true;
     }

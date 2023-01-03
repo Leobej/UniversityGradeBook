@@ -1,6 +1,6 @@
 package com.can.springbootmssql.services;
 
-import com.can.springbootmssql.dtos.SubjectDTO;
+import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.SubjectTypeDTO;
 import com.can.springbootmssql.interfaces.SubjectTypeService;
 import com.can.springbootmssql.mappers.Mapper;
@@ -23,5 +23,20 @@ public class SubjectTypeImpl implements SubjectTypeService {
         List<SubjectType> subjectTypes= subjectTypeRepository.findAll();
         return subjectTypes.stream().map(subjectType -> mapper.convertToType(subjectType, SubjectTypeDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public SubjectTypeDTO saveSubjectType(SubjectTypeDTO subjectTypeDTO) {
+        return null;
+    }
+
+    @Override
+    public SubjectTypeDTO updateSubjectType(int subjectTypeId, SubjectTypeDTO subjectTypeDTO) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteSubjectType(int subjectTypeId) {
+        return null;
     }
 }

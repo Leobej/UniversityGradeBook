@@ -25,4 +25,19 @@ public class GroupTypeServiceImpl implements GroupTypeService {
         return groupTypes.stream().map(groupType -> mapper.convertToType(groupType, GroupTypeDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public GroupTypeDTO saveGroupType(GroupTypeDTO groupTypeDTO) {
+        return null;
+    }
+
+    @Override
+    public GroupTypeDTO updateGroupType(int groupTypeId, GroupTypeDTO groupTypeDTO) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteGroup(int groupTypeId) {
+        return null;
+    }
 }

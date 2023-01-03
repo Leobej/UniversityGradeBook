@@ -10,4 +10,5 @@ import lombok.Setter;
 public class SubjectTypeDTO {
     private int subjectTypeId;
     private Boolean active;
+
 }

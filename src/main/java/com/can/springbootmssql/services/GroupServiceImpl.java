@@ -2,11 +2,10 @@ package com.can.springbootmssql.services;
 
 
 
-import com.can.springbootmssql.dtos.GradeDTO;
 import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.interfaces.GroupService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.Group;
+import com.can.springbootmssql.models.GroupTable;
 import com.can.springbootmssql.repositories.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,8 +21,23 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public List<GroupDTO> getAllGroups() {
-        List<Group> groups =groupRepository.findAll();
+        List<GroupTable> groups =groupRepository.findAll();
         return groups.stream().map(group -> mapper.convertToType(group, GroupDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public GroupDTO saveGroup(GroupDTO groupDto) {
+        return null;
+    }
+
+    @Override
+    public GroupDTO updateGroup(int groupId, GroupDTO groupDTO) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteGroup(int groupId) {
+        return null;
     }
 }

@@ -10,10 +10,10 @@ public class ProfessorSubject {
     private Long id;
 
     @Basic
-    @Column(insertable = false,updatable = false,name = "ProfessorId", nullable = true)
+    @Column(name = "ProfessorId", nullable = true,insertable = false,updatable = false)
     private Integer professorId;
     @Basic
-    @Column(insertable = false,updatable = false,name = "SubjectId", nullable = true)
+    @Column(name = "SubjectId", nullable = true,insertable = false,updatable = false)
     private Integer subjectId;
     @ManyToOne
     @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId")

@@ -1,11 +1,10 @@
 package com.can.springbootmssql.services;
 
-import com.can.springbootmssql.dtos.ProfessorDTO;
+import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.StudentDTO;
 import com.can.springbootmssql.interfaces.StudentService;
 import com.can.springbootmssql.mappers.Mapper;
 import com.can.springbootmssql.models.Student;
-import com.can.springbootmssql.repositories.ProfessorRepository;
 import com.can.springbootmssql.repositories.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,5 +32,20 @@ public class StudentServiceImpl implements StudentService {
         List<Student> students= studentRepository.getAllActiveStudents();
         return students.stream().map(student -> mapper.convertToType(student, StudentDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public StudentDTO saveStudent(StudentDTO studentDTO) {
+        return null;
+    }
+
+    @Override
+    public StudentDTO updateStudent(int studentId, StudentDTO studentDTO) {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteStudent(int studentId) {
+        return null;
     }
 }

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 public class Subject {
@@ -14,8 +16,9 @@ public class Subject {
     @Basic
     @Column(name = "SubjectName", nullable = false, length = 10)
     private String subjectName;
+
     @Basic
-    @Column(insertable = false,updatable = false,name = "SubjectTypeId", nullable = false)
+    @Column(name = "SubjectTypeId", nullable = false,insertable = false,updatable = false)
     private int subjectTypeId;
     @Basic
     @Column(name = "Active", nullable = true)
@@ -27,9 +30,24 @@ public class Subject {
     private Collection<Grade> gradesBySubjectId;
     @OneToMany(mappedBy = "subjectBySubjectId")
     private Collection<ProfessorSubject> professorSubjectsBySubjectId;
+
     @ManyToOne
     @JoinColumn(name = "SubjectTypeId", referencedColumnName = "SubjectTypeId", nullable = false)
     private SubjectType subjectTypeBySubjectTypeId;
+
+    @ManyToMany
+    @JoinTable(name = "ProfessorSubject",
+            joinColumns = @JoinColumn(name = "SubjectId"),
+            inverseJoinColumns = @JoinColumn(name = "ProfessorId"))
+    private Set<Professor> professors = new LinkedHashSet<>();
+
+    public Set<Professor> getProfessors() {
+        return professors;
+    }
+
+    public void setProfessors(Set<Professor> professors) {
+        this.professors = professors;
+    }
 
     public int getSubjectId() {
         return subjectId;
@@ -97,7 +115,7 @@ public class Subject {
         result = 31 * result + (shortSubjectName != null ? shortSubjectName.hashCode() : 0);
         return result;
     }
-    @JsonIgnore
+
     public Collection<Grade> getGradesBySubjectId() {
         return gradesBySubjectId;
     }
@@ -106,19 +124,19 @@ public class Subject {
         this.gradesBySubjectId = gradesBySubjectId;
     }
 
-//    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
-//        return professorSubjectsBySubjectId;
-//    }
-//
-//    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
-//        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
-//    }
+    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
+        return professorSubjectsBySubjectId;
+    }
 
-//    public SubjectType getSubjectTypeBySubjectTypeId() {
-//        return subjectTypeBySubjectTypeId;
-//    }
-//
-//    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
-//        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
-//    }
+    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
+        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
+    }
+
+    public SubjectType getSubjectTypeBySubjectTypeId() {
+        return subjectTypeBySubjectTypeId;
+    }
+
+    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
+        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
+    }
 }

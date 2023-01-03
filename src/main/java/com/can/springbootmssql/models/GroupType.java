@@ -1,7 +1,5 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -17,9 +15,8 @@ public class GroupType {
     @Basic
     @Column(name = "Active", nullable = false)
     private boolean active;
-    @JsonIgnore
     @OneToMany(mappedBy = "groupTypeByGroupTypeId")
-    private Collection<Group> groupsByGroupTypeId;
+    private Collection<GroupTable> groupTablesByGroupTypeId;
 
     public int getGroupTypeId() {
         return groupTypeId;
@@ -67,11 +64,11 @@ public class GroupType {
         return result;
     }
 
-    public Collection<Group> getGroupsByGroupTypeId() {
-        return groupsByGroupTypeId;
+    public Collection<GroupTable> getGroupTablesByGroupTypeId() {
+        return groupTablesByGroupTypeId;
     }
 
-    public void setGroupsByGroupTypeId(Collection<Group> groupsByGroupTypeId) {
-        this.groupsByGroupTypeId = groupsByGroupTypeId;
+    public void setGroupTablesByGroupTypeId(Collection<GroupTable> groupTablesByGroupTypeId) {
+        this.groupTablesByGroupTypeId = groupTablesByGroupTypeId;
     }
 }
