@@ -11,6 +11,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/grouptypes")
 @RequiredArgsConstructor
 public class GroupTypeController {
@@ -37,6 +38,7 @@ public class GroupTypeController {
     @DeleteMapping("")
     public ResponseEntity<Object> deleteGroupType(int groupTypeId) {
         groupTypeService.deleteGroup(groupTypeId);
+
         return ResponseEntity.ok().body(null);
     }
 

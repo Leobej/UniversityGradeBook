@@ -26,7 +26,7 @@ public class StudentServiceImpl implements StudentService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+
     @Override
     public List<StudentDTO> getAllActiveStudents() {
         List<Student> students= studentRepository.getAllActiveStudents();

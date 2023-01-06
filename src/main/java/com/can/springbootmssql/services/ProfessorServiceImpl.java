@@ -26,12 +26,12 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public GroupDTO saveProfessor(ProfessorDTO professorDTO) {
+    public ProfessorDTO saveProfessor(ProfessorDTO professorDTO) {
         return null;
     }
 
     @Override
-    public GroupDTO updateProfessor(int professorId, ProfessorDTO professorDTO) {
+    public ProfessorDTO updateProfessor(int professorId, ProfessorDTO professorDTO) {
         return null;
     }
 
