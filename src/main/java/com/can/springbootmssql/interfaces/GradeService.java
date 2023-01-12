@@ -1,6 +1,7 @@
 package com.can.springbootmssql.interfaces;
 
 import com.can.springbootmssql.dtos.GradeDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -10,9 +11,9 @@ public interface GradeService {
 
     GradeDTO addGrade(@RequestBody GradeDTO gradeDTO);
 
-    GradeDTO updateGrade(int gradeId, @RequestBody GradeDTO gradeDTO);
+    GradeDTO updateGrade( @RequestBody GradeDTO gradeDTO) throws ApiException;
 
-    Boolean deleteGrade(int gradeId);
+    Boolean deleteGrade(int gradeId) throws ApiException;
 
 
 }

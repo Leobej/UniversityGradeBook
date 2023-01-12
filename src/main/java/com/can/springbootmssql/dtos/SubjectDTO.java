@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class SubjectDTO {
     private int subjectId;
-    private String subjectName;
+    private String subjectDescription;
     private int subjectTypeId;
     private Boolean active;
     private String shortSubjectName;

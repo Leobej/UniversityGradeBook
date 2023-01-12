@@ -2,6 +2,7 @@ package com.can.springbootmssql.interfaces;
 
 import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.GroupTypeDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.models.GroupType;
 
 import java.util.List;
@@ -11,8 +12,8 @@ public interface GroupTypeService {
 
     GroupTypeDTO saveGroupType(GroupTypeDTO groupTypeDTO);
 
-    GroupTypeDTO updateGroupType(int groupTypeId, GroupTypeDTO groupTypeDTO);
+    GroupTypeDTO updateGroupType( GroupTypeDTO groupTypeDTO);
 
-    Boolean deleteGroup(int groupTypeId);
+    Boolean deleteGroup(int groupTypeId) throws ApiException;
 
 }

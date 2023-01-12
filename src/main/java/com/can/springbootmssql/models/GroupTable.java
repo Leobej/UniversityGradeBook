@@ -5,8 +5,9 @@ import java.util.Collection;
 
 @Entity
 public class GroupTable {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GroupId", nullable = false)
     private int groupId;
     @Basic

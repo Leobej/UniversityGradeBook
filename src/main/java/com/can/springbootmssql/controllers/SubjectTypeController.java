@@ -1,7 +1,8 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.dtos.SubjectDTO;
+
 import com.can.springbootmssql.dtos.SubjectTypeDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.SubjectTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
-
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("/api/subjecttypes")
 @RequiredArgsConstructor
 public class SubjectTypeController {
@@ -31,16 +31,14 @@ public class SubjectTypeController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateSubjectType(int subjectTypeId, @RequestBody SubjectTypeDTO subjectTypeDTO) {
-        subjectTypeService.updateSubjectType(subjectTypeId, subjectTypeDTO);
-        return ResponseEntity.ok().body(subjectTypeDTO);
-    }
-
-    @DeleteMapping("")
-    public ResponseEntity<Object> deleteSubjectType(int subjectTypeId) {
-        subjectTypeService.deleteSubjectType(subjectTypeId);
+    public ResponseEntity<Object> updateSubjectType( @RequestBody SubjectTypeDTO subjectTypeDTO) {
+        subjectTypeService.updateSubjectType(subjectTypeDTO);
         return ResponseEntity.ok().body(null);
     }
 
-    ;
+    @DeleteMapping("/{subjectTypeId}")
+    public ResponseEntity<Object> deleteSubjectType(@PathVariable int subjectTypeId) throws ApiException {
+        subjectTypeService.deleteSubjectType(subjectTypeId);
+        return ResponseEntity.ok().body(null);
+    }
 }

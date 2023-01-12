@@ -2,6 +2,7 @@ package com.can.springbootmssql.controllers;
 
 import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.dtos.StudentDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +37,13 @@ public class StudentController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateStudent(int studentId, @RequestBody StudentDTO studentDTO) {
-        studentService.updateStudent(studentId, studentDTO);
-        return ResponseEntity.ok().body(studentDTO);
+    public ResponseEntity<Object> updateStudent( @RequestBody StudentDTO studentDTO) {
+        studentService.updateStudent(studentDTO);
+        return ResponseEntity.ok().body(null);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Object>  deleteStudent(int studentId){
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<Object>  deleteStudent(@PathVariable int studentId) throws ApiException {
         studentService.deleteStudent(studentId);
         return ResponseEntity.ok().body(null);
     };

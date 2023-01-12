@@ -3,6 +3,7 @@ package com.can.springbootmssql.controllers;
 import com.can.springbootmssql.dtos.StudentDTO;
 import com.can.springbootmssql.dtos.SubjectDTO;
 import com.can.springbootmssql.dtos.SubjectTypeDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/subjects")
@@ -32,14 +34,16 @@ public class SubjectController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateSubject(int subjectId, @RequestBody SubjectDTO subjectDTO) {
-        subjectService.updateSubject(subjectId, subjectDTO);
-        return ResponseEntity.ok().body(subjectDTO);
+    public ResponseEntity<Object> updateSubject( @RequestBody SubjectDTO subjectDTO) {
+        subjectService.updateSubject(subjectDTO);
+        return ResponseEntity.ok().body(null);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Object>  deleteSubject(int subjectId){
+    @DeleteMapping("/{subjectId}")
+    public ResponseEntity<Object> deleteSubject(@PathVariable int subjectId) throws ApiException {
         subjectService.deleteSubject(subjectId);
         return ResponseEntity.ok().body(null);
-    };
+    }
+
+
 }

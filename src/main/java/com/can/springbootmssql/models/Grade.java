@@ -1,7 +1,9 @@
 package com.can.springbootmssql.models;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Grade {

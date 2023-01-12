@@ -3,6 +3,7 @@ package com.can.springbootmssql.models;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Professor_Subject")
 public class ProfessorSubject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
