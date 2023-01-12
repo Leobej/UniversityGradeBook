@@ -1,6 +1,5 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.dtos.StudentDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.StudentService;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/students")
@@ -20,14 +20,14 @@ public class StudentController {
 
     @GetMapping("")
     public ResponseEntity<Object> getAllStudents() {
-         List<StudentDTO>studentDTOS= studentService.getAllStudents();
-         return ResponseEntity.ok().body(studentDTOS);
+        List<StudentDTO> studentDTOS = studentService.getAllStudents();
+        return ResponseEntity.ok().body(studentDTOS);
     }
 
     @GetMapping("/active")
     public ResponseEntity<Object> getAllActiveStudents() {
-          List<StudentDTO>studentDTOS= studentService.getAllActiveStudents();
-          return ResponseEntity.ok().body(studentDTOS);
+        List<StudentDTO> studentDTOS = studentService.getAllActiveStudents();
+        return ResponseEntity.ok().body(studentDTOS);
     }
 
     @PostMapping("")
@@ -37,15 +37,15 @@ public class StudentController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateStudent( @RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<Object> updateStudent(@RequestBody StudentDTO studentDTO) {
         studentService.updateStudent(studentDTO);
         return ResponseEntity.ok().body(null);
     }
 
     @DeleteMapping("/{studentId}")
-    public ResponseEntity<Object>  deleteStudent(@PathVariable int studentId) throws ApiException {
+    public ResponseEntity<Object> deleteStudent(@PathVariable int studentId) throws ApiException {
         studentService.deleteStudent(studentId);
         return ResponseEntity.ok().body(null);
-    };
+    }
 
 }

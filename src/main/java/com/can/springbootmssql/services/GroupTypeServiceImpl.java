@@ -1,14 +1,11 @@
 package com.can.springbootmssql.services;
 
 
-import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.GroupTypeService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.GroupTable;
 import com.can.springbootmssql.models.GroupType;
-import com.can.springbootmssql.models.Professor;
 import com.can.springbootmssql.repositories.GroupTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,6 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.dtos.StudentDTO;
 import com.can.springbootmssql.dtos.SubjectDTO;
-import com.can.springbootmssql.dtos.SubjectTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.SubjectService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +32,7 @@ public class SubjectController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateSubject( @RequestBody SubjectDTO subjectDTO) {
+    public ResponseEntity<Object> updateSubject(@RequestBody SubjectDTO subjectDTO) {
         subjectService.updateSubject(subjectDTO);
         return ResponseEntity.ok().body(null);
     }

@@ -1,7 +1,5 @@
 package com.can.springbootmssql.interfaces;
 
-import com.can.springbootmssql.dtos.GroupDTO;
-import com.can.springbootmssql.dtos.SubjectDTO;
 import com.can.springbootmssql.dtos.SubjectTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 
@@ -12,7 +10,7 @@ public interface SubjectTypeService {
 
     SubjectTypeDTO saveSubjectType(SubjectTypeDTO subjectTypeDTO);
 
-    SubjectTypeDTO updateSubjectType( SubjectTypeDTO subjectTypeDTO);
+    SubjectTypeDTO updateSubjectType(SubjectTypeDTO subjectTypeDTO) throws ApiException;
 
     Boolean deleteSubjectType(int subjectTypeId) throws ApiException;
 }

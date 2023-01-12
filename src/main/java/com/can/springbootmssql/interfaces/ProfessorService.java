@@ -1,7 +1,5 @@
 package com.can.springbootmssql.interfaces;
 
-import com.can.springbootmssql.dtos.GroupDTO;
-import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 
@@ -12,7 +10,7 @@ public interface ProfessorService {
 
     ProfessorDTO saveProfessor(ProfessorDTO professorDTO);
 
-    ProfessorDTO updateProfessor( ProfessorDTO professorDTO);
+    ProfessorDTO updateProfessor(ProfessorDTO professorDTO) throws ApiException;
 
     Boolean deleteProfessor(int professorId) throws ApiException;
 }

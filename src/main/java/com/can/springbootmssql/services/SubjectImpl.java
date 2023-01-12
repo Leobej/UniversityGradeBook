@@ -4,9 +4,7 @@ import com.can.springbootmssql.dtos.SubjectDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.SubjectService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.Student;
 import com.can.springbootmssql.models.Subject;
-import com.can.springbootmssql.models.SubjectType;
 import com.can.springbootmssql.repositories.ProfessorSubjectRepository;
 import com.can.springbootmssql.repositories.SubjectRepository;
 import com.can.springbootmssql.repositories.SubjectTypeRepository;
@@ -42,7 +40,10 @@ public class SubjectImpl implements SubjectService {
     }
 
     @Override
-    public SubjectDTO updateSubject(SubjectDTO subjectDTO) {
+    public SubjectDTO updateSubject(SubjectDTO subjectDTO) throws ApiException {
+        if (!subjectRepository.existsById(subjectDTO.getSubjectId())) {
+            throw new ApiException("Professor id not found", HttpStatus.NOT_FOUND);
+        }
         Subject subject = mapper.convertToType(subjectDTO, Subject.class);
         subject.setSubjectTypeBySubjectTypeId(subjectTypeRepository.findById(subjectDTO.getSubjectTypeId()).get());
         subjectRepository.save(subject);

@@ -1,6 +1,5 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.ProfessorService;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/professors")
@@ -18,8 +18,8 @@ public class ProfessorController {
     private final ProfessorService professorService;
 
     @GetMapping("")
-    public ResponseEntity<Object>   getAllProfessors() {
-        List<ProfessorDTO> professorDTOs= professorService.getAllProfessors();
+    public ResponseEntity<Object> getAllProfessors() {
+        List<ProfessorDTO> professorDTOs = professorService.getAllProfessors();
         return ResponseEntity.ok().body(professorDTOs);
     }
 
@@ -36,9 +36,9 @@ public class ProfessorController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<Object>  deleteProfessor(int professorId) throws ApiException {
+    public ResponseEntity<Object> deleteProfessor(int professorId) throws ApiException {
         professorService.deleteProfessor(professorId);
         return ResponseEntity.ok().body(null);
-    };
+    }
 
 }

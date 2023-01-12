@@ -1,6 +1,5 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.GroupTypeService;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/grouptypes")
@@ -30,8 +30,8 @@ public class GroupTypeController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateGroupType( @RequestBody GroupTypeDTO groupTypeDTO) {
-        groupTypeService.updateGroupType( groupTypeDTO);
+    public ResponseEntity<Object> updateGroupType(@RequestBody GroupTypeDTO groupTypeDTO) {
+        groupTypeService.updateGroupType(groupTypeDTO);
         return ResponseEntity.ok().body(null);
     }
 
@@ -41,5 +41,4 @@ public class GroupTypeController {
         return ResponseEntity.ok().body(null);
     }
 
-    ;
 }

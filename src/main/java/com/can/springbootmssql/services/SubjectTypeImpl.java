@@ -1,11 +1,9 @@
 package com.can.springbootmssql.services;
 
-import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.SubjectTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.SubjectTypeService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.Subject;
 import com.can.springbootmssql.models.SubjectType;
 import com.can.springbootmssql.repositories.SubjectTypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +34,11 @@ public class SubjectTypeImpl implements SubjectTypeService {
     }
 
     @Override
-    public SubjectTypeDTO updateSubjectType(SubjectTypeDTO subjectTypeDTO) {
+    public SubjectTypeDTO updateSubjectType(SubjectTypeDTO subjectTypeDTO) throws ApiException {
+        if (!subjectTypeRepository.existsById(subjectTypeDTO.getSubjectTypeId())) {
+            throw new ApiException("Professor id not found", HttpStatus.NOT_FOUND);
+        }
         SubjectType subjectType = mapper.convertToType(subjectTypeDTO, SubjectType.class);
-
         subjectTypeRepository.save(subjectType);
         return subjectTypeDTO;
     }

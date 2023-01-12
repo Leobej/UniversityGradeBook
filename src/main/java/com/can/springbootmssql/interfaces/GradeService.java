@@ -11,7 +11,7 @@ public interface GradeService {
 
     GradeDTO addGrade(@RequestBody GradeDTO gradeDTO);
 
-    GradeDTO updateGrade( @RequestBody GradeDTO gradeDTO) throws ApiException;
+    GradeDTO updateGrade(@RequestBody GradeDTO gradeDTO) throws ApiException;
 
     Boolean deleteGrade(int gradeId) throws ApiException;
 

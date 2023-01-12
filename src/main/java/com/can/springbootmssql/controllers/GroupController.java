@@ -32,13 +32,13 @@ public class GroupController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateGroup( @RequestBody GroupDTO groupDTO) {
+    public ResponseEntity<Object> updateGroup(@RequestBody GroupDTO groupDTO) throws ApiException {
         groupService.updateGroup(groupDTO);
         return ResponseEntity.ok().body(null);
     }
 
     @DeleteMapping("/{groupId}")
-    public ResponseEntity<Object>  deleteGroup(@PathVariable int groupId) throws ApiException {
+    public ResponseEntity<Object> deleteGroup(@PathVariable int groupId) throws ApiException {
         groupService.deleteGroup(groupId);
         return ResponseEntity.ok().body(null);
     }

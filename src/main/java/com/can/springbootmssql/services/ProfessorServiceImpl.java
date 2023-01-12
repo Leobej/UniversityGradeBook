@@ -1,13 +1,10 @@
 package com.can.springbootmssql.services;
 
-import com.can.springbootmssql.dtos.GroupDTO;
 import com.can.springbootmssql.dtos.ProfessorDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.ProfessorService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.GroupType;
 import com.can.springbootmssql.models.Professor;
-import com.can.springbootmssql.models.Student;
 import com.can.springbootmssql.repositories.ProfessorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,7 +34,10 @@ public class ProfessorServiceImpl implements ProfessorService {
     }
 
     @Override
-    public ProfessorDTO updateProfessor( ProfessorDTO professorDTO) {
+    public ProfessorDTO updateProfessor(ProfessorDTO professorDTO) throws ApiException {
+        if (!professorRepository.existsById(professorDTO.getProfessorId())) {
+            throw new ApiException("Professor id not found", HttpStatus.NOT_FOUND);
+        }
         Professor professor = mapper.convertToType(professorDTO, Professor.class);
         professorRepository.save(professor);
         return professorDTO;

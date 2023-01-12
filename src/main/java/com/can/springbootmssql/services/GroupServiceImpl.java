@@ -2,11 +2,11 @@ package com.can.springbootmssql.services;
 
 
 import com.can.springbootmssql.dtos.GroupDTO;
-import com.can.springbootmssql.dtos.GroupTypeDTO;
 import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.GroupService;
 import com.can.springbootmssql.mappers.Mapper;
-import com.can.springbootmssql.models.*;
+import com.can.springbootmssql.models.GroupTable;
+import com.can.springbootmssql.models.GroupType;
 import com.can.springbootmssql.repositories.GroupRepository;
 import com.can.springbootmssql.repositories.GroupTypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -38,7 +38,10 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public GroupDTO updateGroup( GroupDTO groupDTO) {
+    public GroupDTO updateGroup(GroupDTO groupDTO) throws ApiException {
+        if (!groupRepository.existsById(groupDTO.getGroupId())) {
+            throw new ApiException("Group id not found", HttpStatus.NOT_FOUND);
+        }
         GroupTable group = mapper.convertToType(groupDTO, GroupTable.class);
         GroupType groupType = groupTypeRepository.findById(groupDTO.getGroupTypeId()).get();
         group.setGroupTypeByGroupTypeId(groupType);

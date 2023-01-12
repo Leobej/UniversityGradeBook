@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,6 +68,7 @@ public class GradeServiceImpl implements GradeService {
         gradeRepository.save(grade);
         return true;
     }
+
     private GradeDTO modifyGrade(GradeDTO gradeDTO) {
         Grade grade = mapper.convertToType(gradeDTO, Grade.class);
         Student student = studentRepository.findById(gradeDTO.getStudentId()).get();

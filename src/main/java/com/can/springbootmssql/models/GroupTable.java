@@ -2,6 +2,7 @@ package com.can.springbootmssql.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class GroupTable {
@@ -20,7 +21,7 @@ public class GroupTable {
     @Column(name = "Active", nullable = false)
     private boolean active;
     @ManyToOne
-    @JoinColumn(name = "GroupTypeId", referencedColumnName = "GroupTypeId", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "GroupTypeId", referencedColumnName = "GroupTypeId", nullable = false, insertable = false, updatable = false)
     private GroupType groupTypeByGroupTypeId;
     @OneToMany(mappedBy = "groupTableByGroupId")
     private Collection<Student> studentsByGroupId;
@@ -67,9 +68,7 @@ public class GroupTable {
         if (groupId != that.groupId) return false;
         if (groupTypeId != that.groupTypeId) return false;
         if (active != that.active) return false;
-        if (fullname != null ? !fullname.equals(that.fullname) : that.fullname != null) return false;
-
-        return true;
+        return Objects.equals(fullname, that.fullname);
     }
 
     @Override
