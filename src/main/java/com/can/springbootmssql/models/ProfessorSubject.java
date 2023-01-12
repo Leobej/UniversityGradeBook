@@ -1,6 +1,7 @@
 package com.can.springbootmssql.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Professor_Subject")
@@ -11,10 +12,10 @@ public class ProfessorSubject {
     private Long id;
 
     @Basic
-    @Column(name = "ProfessorId", nullable = true,insertable = false,updatable = false)
+    @Column(name = "ProfessorId", nullable = true, insertable = false, updatable = false)
     private Integer professorId;
     @Basic
-    @Column(name = "SubjectId", nullable = true,insertable = false,updatable = false)
+    @Column(name = "SubjectId", nullable = true, insertable = false, updatable = false)
     private Integer subjectId;
     @ManyToOne
     @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId")
@@ -54,10 +55,8 @@ public class ProfessorSubject {
 
         ProfessorSubject that = (ProfessorSubject) o;
 
-        if (professorId != null ? !professorId.equals(that.professorId) : that.professorId != null) return false;
-        if (subjectId != null ? !subjectId.equals(that.subjectId) : that.subjectId != null) return false;
-
-        return true;
+        if (!Objects.equals(professorId, that.professorId)) return false;
+        return Objects.equals(subjectId, that.subjectId);
     }
 
     @Override

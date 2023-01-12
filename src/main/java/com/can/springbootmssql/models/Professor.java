@@ -3,6 +3,7 @@ package com.can.springbootmssql.models;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Professor {
@@ -86,14 +87,12 @@ public class Professor {
         Professor professor = (Professor) o;
 
         if (professorId != professor.professorId) return false;
-        if (firstName != null ? !firstName.equals(professor.firstName) : professor.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(professor.lastName) : professor.lastName != null) return false;
-        if (employmentYear != null ? !employmentYear.equals(professor.employmentYear) : professor.employmentYear != null)
+        if (!Objects.equals(firstName, professor.firstName)) return false;
+        if (!Objects.equals(lastName, professor.lastName)) return false;
+        if (!Objects.equals(employmentYear, professor.employmentYear))
             return false;
-        if (active != null ? !active.equals(professor.active) : professor.active != null) return false;
-        if (cnp != null ? !cnp.equals(professor.cnp) : professor.cnp != null) return false;
-
-        return true;
+        if (!Objects.equals(active, professor.active)) return false;
+        return Objects.equals(cnp, professor.cnp);
     }
 
     @Override

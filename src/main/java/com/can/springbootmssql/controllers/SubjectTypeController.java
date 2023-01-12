@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/api/subjecttypes")
@@ -31,7 +32,7 @@ public class SubjectTypeController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateSubjectType( @RequestBody SubjectTypeDTO subjectTypeDTO) {
+    public ResponseEntity<Object> updateSubjectType(@RequestBody SubjectTypeDTO subjectTypeDTO) {
         subjectTypeService.updateSubjectType(subjectTypeDTO);
         return ResponseEntity.ok().body(null);
     }

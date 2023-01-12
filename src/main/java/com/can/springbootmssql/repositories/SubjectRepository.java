@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SubjectRepository extends JpaRepository<Subject,Integer> {
+public interface SubjectRepository extends JpaRepository<Subject, Integer> {
     @Procedure(procedureName = "spSelectSubjectsActive")
     List<Subject> getSubjectsActive();
 }

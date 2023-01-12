@@ -2,6 +2,7 @@ package com.can.springbootmssql.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class GroupType {
@@ -51,9 +52,7 @@ public class GroupType {
 
         if (groupTypeId != groupType.groupTypeId) return false;
         if (active != groupType.active) return false;
-        if (fullname != null ? !fullname.equals(groupType.fullname) : groupType.fullname != null) return false;
-
-        return true;
+        return Objects.equals(fullname, groupType.fullname);
     }
 
     @Override

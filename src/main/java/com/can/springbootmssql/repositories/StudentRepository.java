@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student,Integer> {
+public interface StudentRepository extends JpaRepository<Student, Integer> {
     @Procedure(procedureName = "sp_student_select_all_active")
     List<Student> getAllActiveStudents();
 
     @Procedure(procedureName = "spUpdateActiveStatus")
-    void  updateActiveStatus();
+    void updateActiveStatus();
 }

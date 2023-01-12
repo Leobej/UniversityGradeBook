@@ -1,10 +1,9 @@
 package com.can.springbootmssql.exceptions;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 
 
-public class ApiException extends Exception{
+public class ApiException extends Exception {
 
     private final String message;
     private final HttpStatus httpStatus;
@@ -13,6 +12,7 @@ public class ApiException extends Exception{
         this.message = message;
         this.httpStatus = httpStatus;
     }
+
     @Override
     public String getMessage() {
         return message;

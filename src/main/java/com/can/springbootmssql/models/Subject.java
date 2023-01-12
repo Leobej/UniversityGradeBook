@@ -3,6 +3,7 @@ package com.can.springbootmssql.models;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -16,7 +17,7 @@ public class Subject {
     private String subjectDescription;
 
     @Basic
-    @Column(name = "SubjectTypeId", nullable = false,insertable = false,updatable = false)
+    @Column(name = "SubjectTypeId", nullable = false, insertable = false, updatable = false)
     private int subjectTypeId;
     @Basic
     @Column(name = "Active", nullable = true)
@@ -96,12 +97,10 @@ public class Subject {
 
         if (subjectId != subject.subjectId) return false;
         if (subjectTypeId != subject.subjectTypeId) return false;
-        if (subjectDescription != null ? !subjectDescription.equals(subject.subjectDescription) : subject.subjectDescription != null) return false;
-        if (active != null ? !active.equals(subject.active) : subject.active != null) return false;
-        if (subjectName != null ? !subjectName.equals(subject.subjectName) : subject.subjectName != null)
+        if (!Objects.equals(subjectDescription, subject.subjectDescription))
             return false;
-
-        return true;
+        if (!Objects.equals(active, subject.active)) return false;
+        return Objects.equals(subjectName, subject.subjectName);
     }
 
     @Override

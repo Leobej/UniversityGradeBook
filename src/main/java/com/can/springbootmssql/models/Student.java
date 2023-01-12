@@ -2,6 +2,7 @@ package com.can.springbootmssql.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class Student {
@@ -25,7 +26,7 @@ public class Student {
     @Column(name = "CNP", nullable = false, length = 50)
     private String cnp;
     @Basic
-    @Column(name = "GroupId", nullable = false,insertable = false,updatable = false)
+    @Column(name = "GroupId", nullable = false, insertable = false, updatable = false)
     private int groupId;
     @OneToMany(mappedBy = "studentByStudentId")
     private Collection<Grade> gradesByStudentId;
@@ -99,12 +100,10 @@ public class Student {
         if (studentId != student.studentId) return false;
         if (active != student.active) return false;
         if (groupId != student.groupId) return false;
-        if (firstName != null ? !firstName.equals(student.firstName) : student.firstName != null) return false;
-        if (lastName != null ? !lastName.equals(student.lastName) : student.lastName != null) return false;
-        if (email != null ? !email.equals(student.email) : student.email != null) return false;
-        if (cnp != null ? !cnp.equals(student.cnp) : student.cnp != null) return false;
-
-        return true;
+        if (!Objects.equals(firstName, student.firstName)) return false;
+        if (!Objects.equals(lastName, student.lastName)) return false;
+        if (!Objects.equals(email, student.email)) return false;
+        return Objects.equals(cnp, student.cnp);
     }
 
     @Override

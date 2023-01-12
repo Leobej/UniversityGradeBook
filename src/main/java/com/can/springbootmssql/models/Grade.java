@@ -1,9 +1,8 @@
 package com.can.springbootmssql.models;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Grade {
@@ -18,22 +17,22 @@ public class Grade {
     @Column(name = "ExamDate", nullable = true)
     private Date examDate;
     @Basic
-    @Column(name = "ProfessorId", nullable = false,insertable = false,updatable = false)
+    @Column(name = "ProfessorId", nullable = false, insertable = false, updatable = false)
     private int professorId;
     @Basic
-    @Column(name = "SubjectId", nullable = false,insertable = false,updatable = false)
+    @Column(name = "SubjectId", nullable = false, insertable = false, updatable = false)
     private int subjectId;
     @Basic
-    @Column(name = "StudentId", nullable = false , insertable = false,updatable = false)
+    @Column(name = "StudentId", nullable = false, insertable = false, updatable = false)
     private int studentId;
     @Basic
     @Column(name = "Active", nullable = false)
     private boolean active;
     @ManyToOne
-    @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId",nullable = true)
+    @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId", nullable = true)
     private Professor professorByProfessorId;
     @ManyToOne
-    @JoinColumn(name = "SubjectId", referencedColumnName = "SubjectId",nullable = true)
+    @JoinColumn(name = "SubjectId", referencedColumnName = "SubjectId", nullable = true)
     private Subject subjectBySubjectId;
     @ManyToOne
     @JoinColumn(name = "StudentId", referencedColumnName = "StudentId", nullable = true)
@@ -108,9 +107,7 @@ public class Grade {
         if (subjectId != grade1.subjectId) return false;
         if (studentId != grade1.studentId) return false;
         if (active != grade1.active) return false;
-        if (examDate != null ? !examDate.equals(grade1.examDate) : grade1.examDate != null) return false;
-
-        return true;
+        return Objects.equals(examDate, grade1.examDate);
     }
 
     @Override

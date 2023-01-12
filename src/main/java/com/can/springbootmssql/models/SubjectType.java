@@ -2,6 +2,7 @@ package com.can.springbootmssql.models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 public class SubjectType {
@@ -39,9 +40,7 @@ public class SubjectType {
         SubjectType that = (SubjectType) o;
 
         if (subjectTypeId != that.subjectTypeId) return false;
-        if (active != null ? !active.equals(that.active) : that.active != null) return false;
-
-        return true;
+        return Objects.equals(active, that.active);
     }
 
     @Override
