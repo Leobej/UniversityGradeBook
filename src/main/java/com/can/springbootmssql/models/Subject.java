@@ -1,9 +1,9 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 public class Subject {
@@ -12,24 +12,40 @@ public class Subject {
     @Column(name = "SubjectId", nullable = false)
     private int subjectId;
     @Basic
-    @Column(name = "SubjectName", nullable = false, length = 10)
-    private String subjectName;
+    @Column(name = "SubjectDescription", nullable = false)
+    private String subjectDescription;
+
     @Basic
-    @Column(insertable = false,updatable = false,name = "SubjectTypeId", nullable = false)
+    @Column(name = "SubjectTypeId", nullable = false,insertable = false,updatable = false)
     private int subjectTypeId;
     @Basic
     @Column(name = "Active", nullable = true)
     private Boolean active;
     @Basic
-    @Column(name = "ShortSubjectName", nullable = true, length = 10)
-    private String shortSubjectName;
+    @Column(name = "SubjectName", nullable = true, length = 10)
+    private String subjectName;
     @OneToMany(mappedBy = "subjectBySubjectId")
     private Collection<Grade> gradesBySubjectId;
     @OneToMany(mappedBy = "subjectBySubjectId")
     private Collection<ProfessorSubject> professorSubjectsBySubjectId;
+
     @ManyToOne
     @JoinColumn(name = "SubjectTypeId", referencedColumnName = "SubjectTypeId", nullable = false)
     private SubjectType subjectTypeBySubjectTypeId;
+
+    @ManyToMany
+    @JoinTable(name = "ProfessorSubject",
+            joinColumns = @JoinColumn(name = "SubjectId"),
+            inverseJoinColumns = @JoinColumn(name = "ProfessorId"))
+    private Set<Professor> professors = new LinkedHashSet<>();
+
+    public Set<Professor> getProfessors() {
+        return professors;
+    }
+
+    public void setProfessors(Set<Professor> professors) {
+        this.professors = professors;
+    }
 
     public int getSubjectId() {
         return subjectId;
@@ -39,12 +55,12 @@ public class Subject {
         this.subjectId = subjectId;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public String getSubjectDescription() {
+        return subjectDescription;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setSubjectDescription(String subjectDescription) {
+        this.subjectDescription = subjectDescription;
     }
 
     public int getSubjectTypeId() {
@@ -63,12 +79,12 @@ public class Subject {
         this.active = active;
     }
 
-    public String getShortSubjectName() {
-        return shortSubjectName;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setShortSubjectName(String shortSubjectName) {
-        this.shortSubjectName = shortSubjectName;
+    public void setSubjectName(String shortSubjectName) {
+        this.subjectName = shortSubjectName;
     }
 
     @Override
@@ -80,9 +96,9 @@ public class Subject {
 
         if (subjectId != subject.subjectId) return false;
         if (subjectTypeId != subject.subjectTypeId) return false;
-        if (subjectName != null ? !subjectName.equals(subject.subjectName) : subject.subjectName != null) return false;
+        if (subjectDescription != null ? !subjectDescription.equals(subject.subjectDescription) : subject.subjectDescription != null) return false;
         if (active != null ? !active.equals(subject.active) : subject.active != null) return false;
-        if (shortSubjectName != null ? !shortSubjectName.equals(subject.shortSubjectName) : subject.shortSubjectName != null)
+        if (subjectName != null ? !subjectName.equals(subject.subjectName) : subject.subjectName != null)
             return false;
 
         return true;
@@ -91,13 +107,13 @@ public class Subject {
     @Override
     public int hashCode() {
         int result = subjectId;
-        result = 31 * result + (subjectName != null ? subjectName.hashCode() : 0);
+        result = 31 * result + (subjectDescription != null ? subjectDescription.hashCode() : 0);
         result = 31 * result + subjectTypeId;
         result = 31 * result + (active != null ? active.hashCode() : 0);
-        result = 31 * result + (shortSubjectName != null ? shortSubjectName.hashCode() : 0);
+        result = 31 * result + (subjectName != null ? subjectName.hashCode() : 0);
         return result;
     }
-    @JsonIgnore
+
     public Collection<Grade> getGradesBySubjectId() {
         return gradesBySubjectId;
     }
@@ -106,19 +122,19 @@ public class Subject {
         this.gradesBySubjectId = gradesBySubjectId;
     }
 
-//    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
-//        return professorSubjectsBySubjectId;
-//    }
-//
-//    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
-//        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
-//    }
+    public Collection<ProfessorSubject> getProfessorSubjectsBySubjectId() {
+        return professorSubjectsBySubjectId;
+    }
 
-//    public SubjectType getSubjectTypeBySubjectTypeId() {
-//        return subjectTypeBySubjectTypeId;
-//    }
-//
-//    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
-//        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
-//    }
+    public void setProfessorSubjectsBySubjectId(Collection<ProfessorSubject> professorSubjectsBySubjectId) {
+        this.professorSubjectsBySubjectId = professorSubjectsBySubjectId;
+    }
+
+    public SubjectType getSubjectTypeBySubjectTypeId() {
+        return subjectTypeBySubjectTypeId;
+    }
+
+    public void setSubjectTypeBySubjectTypeId(SubjectType subjectTypeBySubjectTypeId) {
+        this.subjectTypeBySubjectTypeId = subjectTypeBySubjectTypeId;
+    }
 }

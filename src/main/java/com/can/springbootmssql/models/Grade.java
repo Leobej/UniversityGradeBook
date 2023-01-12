@@ -1,9 +1,9 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Grade {
@@ -17,32 +17,26 @@ public class Grade {
     @Basic
     @Column(name = "ExamDate", nullable = true)
     private Date examDate;
-
     @Basic
-    @Column(insertable = false,updatable = false,name = "ProfessorId", nullable = false)
+    @Column(name = "ProfessorId", nullable = false,insertable = false,updatable = false)
     private int professorId;
-
     @Basic
-    @Column(insertable = false,updatable = false,name = "SubjectId", nullable = false)
+    @Column(name = "SubjectId", nullable = false,insertable = false,updatable = false)
     private int subjectId;
-
     @Basic
-    @Column(insertable = false,updatable = false,name = "StudentId", nullable = false)
+    @Column(name = "StudentId", nullable = false , insertable = false,updatable = false)
     private int studentId;
     @Basic
     @Column(name = "Active", nullable = false)
     private boolean active;
-
     @ManyToOne
-    @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId", nullable = false)
+    @JoinColumn(name = "ProfessorId", referencedColumnName = "ProfessorId",nullable = true)
     private Professor professorByProfessorId;
-
     @ManyToOne
-    @JoinColumn(name = "SubjectId", referencedColumnName = "SubjectId", nullable = false)
+    @JoinColumn(name = "SubjectId", referencedColumnName = "SubjectId",nullable = true)
     private Subject subjectBySubjectId;
-
     @ManyToOne
-    @JoinColumn(name = "StudentId", referencedColumnName = "StudentId", nullable = false)
+    @JoinColumn(name = "StudentId", referencedColumnName = "StudentId", nullable = true)
     private Student studentByStudentId;
 
     public int getGradeId() {
@@ -131,14 +125,14 @@ public class Grade {
         return result;
     }
 
-//    public Professor getProfessorByProfessorId() {
-//        return professorByProfessorId;
-//    }
+    public Professor getProfessorByProfessorId() {
+        return professorByProfessorId;
+    }
 
     public void setProfessorByProfessorId(Professor professorByProfessorId) {
         this.professorByProfessorId = professorByProfessorId;
     }
-    @JsonIgnore
+
     public Subject getSubjectBySubjectId() {
         return subjectBySubjectId;
     }
@@ -146,7 +140,7 @@ public class Grade {
     public void setSubjectBySubjectId(Subject subjectBySubjectId) {
         this.subjectBySubjectId = subjectBySubjectId;
     }
-    @JsonIgnore
+
     public Student getStudentByStudentId() {
         return studentByStudentId;
     }

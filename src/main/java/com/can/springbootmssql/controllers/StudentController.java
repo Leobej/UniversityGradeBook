@@ -1,16 +1,16 @@
 package com.can.springbootmssql.controllers;
 
-import com.can.springbootmssql.interfaces.ProfessorService;
+import com.can.springbootmssql.dtos.ProfessorDTO;
+import com.can.springbootmssql.dtos.StudentDTO;
+import com.can.springbootmssql.exceptions.ApiException;
 import com.can.springbootmssql.interfaces.StudentService;
-import com.can.springbootmssql.models.Professor;
-import com.can.springbootmssql.models.Student;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/students")
 @RequiredArgsConstructor
@@ -19,12 +19,33 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("")
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public ResponseEntity<Object> getAllStudents() {
+         List<StudentDTO>studentDTOS= studentService.getAllStudents();
+         return ResponseEntity.ok().body(studentDTOS);
     }
 
     @GetMapping("/active")
-    public List<Student> getAllActiveStudents() {
-        return studentService.getAllActiveStudents();
+    public ResponseEntity<Object> getAllActiveStudents() {
+          List<StudentDTO>studentDTOS= studentService.getAllActiveStudents();
+          return ResponseEntity.ok().body(studentDTOS);
     }
+
+    @PostMapping("")
+    public ResponseEntity<Object> addStudent(@RequestBody StudentDTO studentDTO) {
+        studentService.saveStudent(studentDTO);
+        return ResponseEntity.created(URI.create("")).body(null);
+    }
+
+    @PutMapping("")
+    public ResponseEntity<Object> updateStudent( @RequestBody StudentDTO studentDTO) {
+        studentService.updateStudent(studentDTO);
+        return ResponseEntity.ok().body(null);
+    }
+
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<Object>  deleteStudent(@PathVariable int studentId) throws ApiException {
+        studentService.deleteStudent(studentId);
+        return ResponseEntity.ok().body(null);
+    };
+
 }

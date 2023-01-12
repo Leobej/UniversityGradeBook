@@ -1,7 +1,5 @@
 package com.can.springbootmssql.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -27,13 +25,13 @@ public class Student {
     @Column(name = "CNP", nullable = false, length = 50)
     private String cnp;
     @Basic
-    @Column(insertable = false,updatable = false,name = "GroupId", nullable = false)
+    @Column(name = "GroupId", nullable = false,insertable = false,updatable = false)
     private int groupId;
     @OneToMany(mappedBy = "studentByStudentId")
     private Collection<Grade> gradesByStudentId;
     @ManyToOne
     @JoinColumn(name = "GroupId", referencedColumnName = "GroupId", nullable = false)
-    private Group groupByGroupId;
+    private GroupTable groupTableByGroupId;
 
     public int getStudentId() {
         return studentId;
@@ -120,7 +118,7 @@ public class Student {
         result = 31 * result + groupId;
         return result;
     }
-    @JsonIgnore
+
     public Collection<Grade> getGradesByStudentId() {
         return gradesByStudentId;
     }
@@ -128,12 +126,12 @@ public class Student {
     public void setGradesByStudentId(Collection<Grade> gradesByStudentId) {
         this.gradesByStudentId = gradesByStudentId;
     }
-@JsonIgnore
-    public Group getGroupByGroupId() {
-        return groupByGroupId;
+
+    public GroupTable getGroupTableByGroupId() {
+        return groupTableByGroupId;
     }
 
-    public void setGroupByGroupId(Group groupByGroupId) {
-        this.groupByGroupId = groupByGroupId;
+    public void setGroupTableByGroupId(GroupTable groupTableByGroupId) {
+        this.groupTableByGroupId = groupTableByGroupId;
     }
 }
