@@ -10,7 +10,7 @@ public interface GroupTypeService {
 
     GroupTypeDTO saveGroupType(GroupTypeDTO groupTypeDTO);
 
-    GroupTypeDTO updateGroupType(GroupTypeDTO groupTypeDTO);
+    GroupTypeDTO updateGroupType(GroupTypeDTO groupTypeDTO) throws ApiException;
 
     Boolean deleteGroup(int groupTypeId) throws ApiException;
 

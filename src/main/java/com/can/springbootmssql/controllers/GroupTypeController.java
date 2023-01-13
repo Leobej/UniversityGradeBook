@@ -30,7 +30,8 @@ public class GroupTypeController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateGroupType(@RequestBody GroupTypeDTO groupTypeDTO) {
+    public ResponseEntity<Object> updateGroupType(@RequestBody GroupTypeDTO groupTypeDTO) throws ApiException {
+
         groupTypeService.updateGroupType(groupTypeDTO);
         return ResponseEntity.ok().body(null);
     }

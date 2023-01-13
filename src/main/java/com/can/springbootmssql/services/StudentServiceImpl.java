@@ -29,7 +29,6 @@ public class StudentServiceImpl implements StudentService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public List<StudentDTO> getAllActiveStudents() {
         List<Student> students = studentRepository.getAllActiveStudents();
@@ -56,7 +55,6 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(student);
         return studentDTO;
     }
-
     @Override
     public Boolean deleteStudent(int studentId) throws ApiException {
         Student student = studentRepository.findById(studentId)

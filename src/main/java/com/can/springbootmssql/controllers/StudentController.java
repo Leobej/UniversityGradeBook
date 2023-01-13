@@ -37,7 +37,7 @@ public class StudentController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateStudent(@RequestBody StudentDTO studentDTO) {
+    public ResponseEntity<Object> updateStudent(@RequestBody StudentDTO studentDTO) throws ApiException {
         studentService.updateStudent(studentDTO);
         return ResponseEntity.ok().body(null);
     }

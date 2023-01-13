@@ -30,7 +30,7 @@ public class ProfessorController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateProfessor(@RequestBody ProfessorDTO professorDTO) {
+    public ResponseEntity<Object> updateProfessor(@RequestBody ProfessorDTO professorDTO) throws ApiException {
         professorService.updateProfessor(professorDTO);
         return ResponseEntity.ok().body(null);
     }

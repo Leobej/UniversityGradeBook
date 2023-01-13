@@ -35,7 +35,9 @@ public class GroupTypeServiceImpl implements GroupTypeService {
     }
 
     @Override
-    public GroupTypeDTO updateGroupType(GroupTypeDTO groupTypeDTO) {
+    public GroupTypeDTO updateGroupType(GroupTypeDTO groupTypeDTO) throws ApiException {
+        if(groupTypeRepository.existsById(groupTypeDTO.getGroupTypeId()))
+            throw new ApiException("Group Type id not found",HttpStatus.NOT_FOUND);
         GroupType group = mapper.convertToType(groupTypeDTO, GroupType.class);
         groupTypeRepository.save(group);
         return groupTypeDTO;

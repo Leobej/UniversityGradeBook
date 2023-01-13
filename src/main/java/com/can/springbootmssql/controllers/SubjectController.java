@@ -32,7 +32,7 @@ public class SubjectController {
     }
 
     @PutMapping("")
-    public ResponseEntity<Object> updateSubject(@RequestBody SubjectDTO subjectDTO) {
+    public ResponseEntity<Object> updateSubject(@RequestBody SubjectDTO subjectDTO) throws ApiException {
         subjectService.updateSubject(subjectDTO);
         return ResponseEntity.ok().body(null);
     }

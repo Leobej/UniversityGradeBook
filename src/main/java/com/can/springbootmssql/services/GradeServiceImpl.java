@@ -25,19 +25,19 @@ public class GradeServiceImpl implements GradeService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
     private final ProfessorRepository professorRepository;
-    private final ProfessorSubjectRepository professorSubjectRepository;
+
 
     public GradeServiceImpl(Mapper mapper, GradeRepository gradeRepository
             , StudentRepository studentRepository
             , SubjectRepository subjectRepository
             , ProfessorRepository professorRepository
-            , ProfessorSubjectRepository professorSubjectRepository) {
+            ) {
         this.mapper = mapper;
         this.gradeRepository = gradeRepository;
         this.studentRepository = studentRepository;
         this.professorRepository = professorRepository;
         this.subjectRepository = subjectRepository;
-        this.professorSubjectRepository = professorSubjectRepository;
+
     }
 
     @Transactional
